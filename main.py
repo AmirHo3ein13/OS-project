@@ -27,7 +27,11 @@ n, f, t = [int(x) for x in input().split()]
 
 for i in range(f):
     # TODO: what should we do here?!?!
-    os.fork()
-    for j in range(t):
-        th = MyThread(n)
-        th.start()
+    parent = os.fork()
+    if not parent:
+        for j in range(t):
+            # th = MyThread(n)
+            # th.start()
+            t = Thread(target=n3_order_func, args=(n,))
+            t.start()
+
